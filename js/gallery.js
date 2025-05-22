@@ -78,7 +78,7 @@ function createGallery(array) {
   class="gallery-image"
   src="${image.preview}"
    data-source="${image.original}"
-     alt="${image.description}"
+     alt="${image.description}" 
    />
   </a>
 </li>
@@ -87,12 +87,6 @@ function createGallery(array) {
     .join("");
 }
 
-gallery.style.display = "flex";
-gallery.style.flexWrap = "wrap";
-gallery.style.alignItems = "center";
-gallery.style.justifyContent = "center";
-gallery.style.gap = "20px";
-gallery.style.listStyle = "none";
 
 gallery.insertAdjacentHTML("beforeend", createGallery(images));
 
@@ -104,6 +98,25 @@ function galleryBloc(event) {
   if (event.target.nodeName !== "IMG") {
     return;
   }
+// const linkAdd = event.target;
+// console.log(event.target);
+
   const linkImg = event.target.dataset.source;
-  console.log(linkImg);
+  // console.log(linkImg);
+
+const altText = event.target.alt;
+  // console.log(altText);
+
+
+
+const instance = basicLightbox.create(`
+    <div class="modal">
+      <img src="${linkImg}" alt="${altText}" />
+    </div>
+  `);
+
+  instance.show();
 }
+
+
+// console.log(window);
